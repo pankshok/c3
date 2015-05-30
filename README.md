@@ -1,4 +1,4 @@
 # c3
 CUDA Cloud Computing
 
-For istallation pull clone this repository and source deploy.sh.
+For installation clone this repository and source deploy.sh.
