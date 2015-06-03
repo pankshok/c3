@@ -7,6 +7,10 @@ def readme():
     with open("README.md") as f:
         return f.read()
 
+def requirements():
+    with open("requirements.txt") as f:
+        return [s.rstrip("\n") for s in f.readlines() if not s.startswith("#")]
+
 setup(
     name="C3",
     description="CUDA Cloud Computing",
@@ -19,13 +23,13 @@ setup(
     package_data={},
     license="MIT",
     platforms="Posix",
-    install_requires=[
-        "daemonize",
+    install_requires=requirements(),
+#        "daemonize",
 #        "numpy",
 #        "pycuda",
-        "flask",
-        "flask-script",
-    ],
+#        "flask",
+#        "flask-script",
+#    ],
     setup_requires=[
 #        "numpy",
     ],
