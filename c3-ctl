@@ -1,0 +1,34 @@
+#! /usr/bin/env python3
+
+import argparse
+import sys
+import os
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(prog=__name__)
+    subparsers = parser.add_subparsers()
+
+    parser_adm = subparsers.add_parser("adm", help="C3 administration tool")
+    parser_adm.add_argument("status", help="Cloud status")
+    parser_adm.set_defaults(func=check_status)
+
+    args = parser.parse_args()
+
+    if "func" not in args:
+        parser.print_help()
+        sys.exit(1)
+
+    return args
+
+
+def check_status(args):
+    services = ["cns"]
+    statuses = [os.system("service c3-{0} status".format(s)) for s in services]
+
+def main():
+    args = parse_args()
+    args.func(args)
+
+if __name__ == "__main__":
+    main()

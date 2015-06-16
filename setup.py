@@ -17,8 +17,8 @@ setup(
     long_description=readme(),
     author="Pavel Kulyov",
     author_email="kulyov.pavel@gmail.com",
-    version="0.1dev",
-    py_modules=[],
+    version="0.1",
+    py_modules=["c3-ctl"],
     packages=find_packages(),
     package_data={},
     license="MIT",
@@ -29,7 +29,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "c3-cns = cns.cns:main",
+            "c3-cns = cns.cns:manage",
         ]
     }
 )
