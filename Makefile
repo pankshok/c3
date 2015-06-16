@@ -81,8 +81,10 @@ install_production_environment: clean install_deps generate_prod_makefile
 	${SUWRAP} ${MAKE} -C ${PROJ_HOME} -f ${PROJ_HOME}/Makefile.prod install
 	@printf "\n\nUse following commands to start services:\n"
 	@printf "sudo service c3-cns start\n"
+	@printf "sudo service c3-tss start\n"
+	@printf "sudo service c3-iwi start\n"
+	@printf "sudo service c3-ewi start\n"
 	@printf "sudo service nginx start\n"
-	@printf "test with curl localhost\n"
 	@printf "\n\nUse following commands to activate virtual environment:\n"
 	@printf "sudo su ${PROJ_USER}\n"
 	@printf "cd ${PROJ_HOME}\n"
