@@ -24,12 +24,6 @@ setup(
     license="MIT",
     platforms="Posix",
     install_requires=requirements(),
-#        "daemonize",
-#        "numpy",
-#        "pycuda",
-#        "flask",
-#        "flask-script",
-#    ],
     setup_requires=[
 #        "numpy",
     ],
