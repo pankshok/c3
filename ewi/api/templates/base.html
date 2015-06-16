@@ -1,0 +1,16 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - CUDA Cloud Computing</title>
+        {% else %}
+        <title>CUDA Cloud Computing</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>C3: <a href="/index">Home</a></div>
+        <hr>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
+
