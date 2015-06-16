@@ -1,0 +1,76 @@
+#!/bin/bash
+# chkconfig: 2345 20 80
+# description: C3 Compute Node Service
+
+# Source function library.
+. /etc/init.d/functions || exit 1
+
+# Source networking configuration.
+. /etc/sysconfig/network || exit 1
+
+[ "$NETWORKING" = "no" ] && exit 2
+
+user=_c3
+group=_c3
+project_name=c3
+service_name=cns
+project_home=/home/${user}
+project_etc=/etc/${project_name}
+project_bin=${project_home}/env/bin
+service_dir=${project_home}/${service_name}
+daemon_name=c3-cns
+daemon_path=${project_bin}/uwsgi
+uwsgi_ini=${project_etc}/${project_name}-${service_name}-uwsgi.ini
+pidfile=/var/run/lock/${project_name}/${service_name}.pid
+lockfile=/var/run/lock/${project_name}/${service_name}.lock
+
+
+start() {
+    local rc=0
+    if [ ! -f "$lockfile" ]; then
+        echo -n $"Starting $daemon_name: "
+        daemon --user ${user} --pidfile ${pidfile} ${daemon_path} --ini ${uwsgi_ini} && success || failure
+        rc=$?
+
+        echo
+        [ $rc = 0 ] && touch ${lockfile}
+    fi
+    return $rc
+}
+
+stop() {
+    echo -n $"Stopping $daemon_name: "
+    killproc -p ${pidfile} ${daemon_path}
+    rc=$?
+
+    echo
+    [ $rc = 0 ] && rm -f ${lockfile}
+    return $rc
+}
+
+restart() {
+    stop
+    start
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart|reload)
+        restart
+        ;;
+    condrestart|condreload)
+        [ -f ${lockfile} ] && restart || :
+        ;;
+    status)
+        status -p ${pidfile} ${daemon_path}
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart|reload|condrestart|condreload|status}" >&2
+        exit 3
+        ;;
+esac
