@@ -30,6 +30,7 @@ setup(
     entry_points={
         "console_scripts": [
             "c3-cns = cns.cns:manage",
+            "c3-tss = tss.tss:manage",
         ]
     }
 )
