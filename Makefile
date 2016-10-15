@@ -50,7 +50,7 @@ devel: clean
 	@printf "\n\nUse following command to activate virtual environment:\n"
 	@printf "source ${DEV_ENV}/bin/activate\n"
 	@printf "export C3_DEBUG_MODE=True\n"
-	@printf "available service handlers: c3-cns\n"
+	@printf "available service handlers: c3-cns, c3-tss\n"
 
 clean:
 	@printf "========== Removing old environment ==========\n"

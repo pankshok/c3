@@ -1,11 +1,8 @@
-#numpy
 #daemonize
 flask>=0.10.1
 flask-wtf
 flask-script
-flask-sqlalchemy
-sqlalchemy==0.9.9
-sqlalchemy-migrate
+flask-pymongo
 pymongo
 uwsgi
 #pycuda

@@ -1,15 +1,19 @@
 from platform import linux_distribution
 from setuptools import setup, find_packages
 
+
 print(linux_distribution())
+
 
 def readme():
     with open("README.md") as f:
         return f.read()
 
+
 def requirements():
     with open("requirements.txt") as f:
         return [s.rstrip("\n") for s in f.readlines() if not s.startswith("#")]
+
 
 setup(
     name="C3",
